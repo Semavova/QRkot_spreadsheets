@@ -72,11 +72,11 @@ async def spreadsheets_update_value(
     service = await wrapper_services.discover('sheets', SHEETS_VERSION)
     header = deepcopy(SHEET_HEAD)
     header[0][1] = datetime.now().strftime(FORMAT)
-    table_values = [*header]
-    for name, time, description in projects:
-        table_values.append(
-            [str(name), str(timedelta(time)), str(description)]
-        )
+    table_values = [
+        *header,
+        *[[str(name), str(timedelta(time)), str(description)]
+          for name, time, description in projects]
+    ]
     row_count = len(table_values)
     column_count = max(map(len, header))
     if row_count > ROW_COUNT or column_count > COLUMN_COUNT:

@@ -16,7 +16,7 @@ DESCRIPTION = (
 class Fund(Base):
     __abstract__ = True
     __table_args__ = (
-        CheckConstraint('full_amount >= invested_amount >= 0'),
+        CheckConstraint('full_amount >= invested_amount > 0'),
     )
 
     full_amount = Column(Integer, nullable=False)
