@@ -1,0 +1,1 @@
+from .donation_service import investment # noqa
